@@ -1,0 +1,49 @@
+{% extends "blog/base.html" %}
+{% block content %}
+{% load static %}
+<img src="{% static 'blog/courses.png' %}" alt="My image" width="1000px" height="400px"><br><br>
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+     <div class="card" style="width: 20rem;">
+    <iframe width="420" height="345" src="https://youtube.com/embed/W0agllSwbNc" class="card-img-top" >
+</iframe>
+  <div class="card-body">
+    <h5 class="card-title">Python for beginners</h5>
+    <p class="card-text">Click on that video to learn</p>
+  </div>
+</div>
+    </div>
+    <div class="col-sm">
+      <div class="card" style="width: 20rem;">
+    <iframe width="420" height="345" src="https://youtube.com/embed/kGSorCMY-vo" class="card-img-top" >
+</iframe>
+
+
+
+  <div class="card-body">
+    <h5 class="card-title">HTML for beginners</h5>
+    <p class="card-text">Click on that video to learn</p>
+  </div>
+</div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

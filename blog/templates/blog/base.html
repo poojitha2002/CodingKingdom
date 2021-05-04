@@ -1,0 +1,175 @@
+{% load static %}
+
+<html>
+<head>
+    <style>
+
+.side{
+	position: fixed;
+	top:50%;
+	right:0px;
+	transform:translateY(-50%);
+}
+.side a{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width:60px;
+	height:50px;
+	margin:0px;
+	text-decoration:none;
+	padding: 0px;
+	line-height:0px;
+	background-color:#4682B4;
+	border:2px solid #778899;
+	box-shadow:2px 2px 12px rgba(0,0,0,0.2);
+}
+.side a:hover{
+	background-color: #b3ecff;
+	transition:all ease 0.5s;
+}
+
+    </style>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+
+    {% if title %}
+        <title>Django Blog - {{ title }}</title>
+    {% else %}
+        <title>Django Blog</title>
+    {% endif %}
+</head>
+<body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="{% url 'homepage' %}">Coding Kingdom</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+
+              <a class="nav-item nav-link" href="{% url 'homepage' %}">Home</a>
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+                  <a class="nav-item nav-link" href="{% url 'courses' %}">Courses</a>
+                  <a class="nav-item nav-link" href="#">Blogs</a>
+                  <a class="nav-item nav-link" href="{% url 'blog-home' %}">Discussion Forum</a>
+                  <a class="nav-item nav-link" href="{% url 'contact' %}">Contact Us</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              {% if user.is_authenticated %}
+
+
+                <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    More
+  </button>
+  <div class="dropdown-menu">
+      <a   style="text-decoration:none"  href="{% url 'profile' %}" ><button class="dropdown-item"  >Profile</button></a>
+ <a   style="text-decoration:none"  href="#" ><button class="dropdown-item"  >Quizzes</button></a>
+ <a   style="text-decoration:none"  href="{% url 'resources' %}" ><button class="dropdown-item"  >Free Resources</button></a>
+ <a   style="text-decoration:none"  href="{% url 'mock' %}" ><button class="dropdown-item"  >Mock Interviews</button></a>
+       <a   style="text-decoration:none"  href="{% url 'profile' %}" ><button class="dropdown-item"  >My Coins</button></a>
+       <a   style="text-decoration:none"  href="{% url 'profile' %}" ><button class="dropdown-item"  >Become a Problem Setter</button></a>
+
+       <a   style="text-decoration:none"  href="{% url 'klu' %}" ><button class="dropdown-item"  >KL Hub</button></a>
+
+
+
+
+  </div>
+</div>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+      <!--  <div class="col-md-4">
+          <div class="content-section">
+            <h3>Our Sidebar</h3>
+            <p class='text-muted'>You can put any information here you'd like.
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Latest Posts</li>
+                <li class="list-group-item list-group-item-light">Announcements</li>
+                <li class="list-group-item list-group-item-light">Calendars</li>
+                <li class="list-group-item list-group-item-light">etc</li>
+              </ul>
+            </p>
+          </div>
+        </div> -->
+      </div>
+    </main>
+
+    </div>
+
+          <div class="side"> <a href="{% url 'paint' %}">Rough</a> </div>
+
+<div class="mt-5 pt-5 pb-5 footer">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-5 col-xs-12 about-company">
+      <h2>Heading</h2>
+      <p class="pr-5 text-white-50">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac ante mollis quam tristique convallis </p>
+      <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i class="fa fa-linkedin-square"></i></a></p>
+    </div>
+    <div class="col-lg-3 col-xs-12 links">
+      <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+        <ul class="m-0 p-0">
+          <li>- <a href="#">Lorem ipsum</a></li>
+          <li>- <a href="#">Nam mauris velit</a></li>
+          <li>- <a href="#">Etiam vitae mauris</a></li>
+          <li>- <a href="#">Fusce scelerisque</a></li>
+          <li>- <a href="#">Sed faucibus</a></li>
+          <li>- <a href="#">Mauris efficitur nulla</a></li>
+        </ul>
+    </div>
+
+    <div class="col-lg-4 col-xs-12 location">
+      <h4 class="mt-lg-0 mt-sm-4">Location</h4>
+      <p>22, Lorem ipsum dolor, consectetur adipiscing</p>
+      <p class="mb-0"><i class="fa fa-phone mr-3"></i>(541) 754-3010</p>
+      <p><i class="fa fa-envelope-o mr-3"></i>info@hsdf.com</p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col copyright">
+      <p class=""><small class="text-white-50">© 2021. All Rights Reserved.</small></p>
+    </div>
+  </div>
+</div>
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
